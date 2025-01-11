@@ -1,27 +1,21 @@
 import re 
 
-contador =0
+contador = 0
 archivo = open('texto.txt').read()
-# separadassss = archivo.split('\n\n')
 renglones = archivo.splitlines()
+
+renglones.remove('')
+
+print(f'Estos son los renglones de todo el archivo ({renglones.__len__()}):\n{renglones}')
+
+
 for renglon in renglones:
-    limpiadoEnPalabras = re.split(r'\W+', renglon)
-    limpiadoEnPalabras.sort()
+    print(f'== Renglon {contador+1} ==')
+    palabrasDeRenglon = re.split(r'\W+', renglon)
+    # palabrasDeRenglon = renglon.split(' ')
 
-    print(f"Hello, {contador}!")
+    palabrasDeRenglon.remove('')
+    palabrasDeRenglon.sort()
+    print(f'Palabras del renglon actual ordenadas: ({palabrasDeRenglon.__len__()}):\n {palabrasDeRenglon}')
 
-
-limpiadoEnPalabras = re.split(r'\W+', archivo)
-print(limpiadoEnPalabras)
-
-copiado = list(limpiadoEnPalabras)
-
-limpiadoEnPalabras.sort()
-
-print(limpiadoEnPalabras)
-
-final =''
-for palabra  in limpiadoEnPalabras:
-    final+= palabra+' '
-
-print(final)
+    contador+=1
