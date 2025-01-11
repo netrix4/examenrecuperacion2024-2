@@ -1,39 +1,43 @@
+import re
 
-archivo = open('diccionario2.txt').read()
-separadassss = archivo.split('\n\n')
-print(separadassss)
+def SeparaParesDeDigitos(bitsEntrada2):
+    respuesta = re.findall('[0-9][0-9]', bitsEntrada2)
+    return respuesta
 
+def SeparaArchivoEnPalabras():
+    archivo = open('diccionario.txt').read()
 
-# separado = list(entrada)
+    # respuesta = re.findall('([áéíóúÁÉÍÓÚ]?\w[áéíóú]?)+',archivo)
+    respuesta = re.findall('\w+',archivo)
+    # print(f'Longitud del archivo de entrada: {respuesta.__len__()}')
+    return respuesta
 
-# print(separado)
+def CodificarCadena(todosDigitos):
+    respuesta=''
 
-# def sumarDigitos():
-#     primero = separado.pop(0)
-#     segundo = separado.pop(0)
+    for digito in todosDigitos:
+        print(f'Digito: {int(digito)} Palabra: {totalPalabrasDeArchivo[int(digito)]}')
+        respuesta += totalPalabrasDeArchivo[int(digito)] + ' '
 
-#     sumaCarroX = primero+segundo
+    return respuesta
 
-#     primero = separado.pop(0)
-#     segundo = separado.pop(0)
-
-#     sumaCarroY = primero + segundo
-#     if sumaCarroX>sumaCarroY:
-#         contadorX+=1
-#     else:
-#         contadorY+=1
-
-
-# while(separado.__len__()>4):
-
-#     if(separado.__len__() > 4):
-#         sumarDigitos()
-
-#     else:
-#         print('No es posible hacer mas sumas')
+if (__name__ == "__main__"):
+    elInputEsCorrecto = False
+    # totalPalabrasDeArchivo =''
 
 
-# if(contadorY>contadorY):
-#     print('El carroY gano')
-# else:
-#     print('El carroX gano')
+    while(elInputEsCorrecto == False):
+        bitsEntrada = input('Dame el numero entero (pares de digitos): ')
+
+        if(bitsEntrada.__len__()%2 == 0):
+            elInputEsCorrecto = True
+
+            totalPalabrasDeArchivo = SeparaArchivoEnPalabras()
+            paresDigitos = SeparaParesDeDigitos(bitsEntrada)
+
+            cadenaCodificada = CodificarCadena(paresDigitos)
+
+            print(f'La frase resultante de la codificacion es la siguiente: \n{cadenaCodificada}')
+
+        else:
+            print("El numero de digitos de tu entrada  NO es par, reingresa un numero par\n")
